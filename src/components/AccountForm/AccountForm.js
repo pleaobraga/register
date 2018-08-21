@@ -20,6 +20,12 @@ class AccountForm extends Component {
                     errorMessage:'',
                     name: 'email'
                 },
+                phone: {
+                    value:'',
+                    errorMessage:'',
+                    name: 'phone',
+                    mask: [ /\d/, /\d/, /\d/ , ' ', /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/ ]
+                },
                 password: {
                     value:'',
                     errorMessage:'',
@@ -41,7 +47,8 @@ class AccountForm extends Component {
                 required: 'Campo Obrigatório',
                 match: 'Senha nao corresponde a anterior',
                 email: 'Digite um email válido',
-                name: 'Digite um nome válido' 
+                name: 'Digite um nome válido',
+                phone: 'O número de telefone precisa ter 9 digitos' 
             },
             submited: false
         }
@@ -78,7 +85,8 @@ class AccountForm extends Component {
                 checkEmailValidation,
                 checkConfirmPassword,
                 checkPasswordValidations,
-                checkHasOnlyLetters
+                checkHasOnlyLetters,
+                checkMinLength9
             } = this
 
         let { input, validationMessage } = this.state,
@@ -86,7 +94,8 @@ class AccountForm extends Component {
               password,
               email,
               name,
-              confirmPassword 
+              confirmPassword,
+              phone
             } = input
 
         input[field].value = value
@@ -122,6 +131,13 @@ class AccountForm extends Component {
                     : !checkConfirmPassword(password.value, confirmPassword.value) ? validationMessage.match : ''
 
                 return input   
+
+            case 'phone':
+
+                phone.errorMessage = checkEmptyInput(phone) ? validationMessage.required 
+                    : !checkMinLength9(phone.value) ? validationMessage.phone : ''
+
+                return input
                 
             default:
                 return input
@@ -132,6 +148,10 @@ class AccountForm extends Component {
 
     checkEmptyInput(field) {
         return field.value.length === 0
+    }
+
+    checkMinLength9(value) {
+        return value.replace( /\D/g, '').length === 9
     }
 
     checkHasOnlyLetters(field) {
@@ -173,6 +193,7 @@ class AccountForm extends Component {
         let {
              name, 
              email,
+             phone,
              password,
              confirmPassword 
             } = this.state.input,
@@ -197,6 +218,14 @@ class AccountForm extends Component {
                         placeHolder="Digite seu email"
                         onInputChange={this.handleInputChange}
                         showMensageError={email.errorMessage.length > 0}/>
+
+                    <InputGroup 
+                        inputProps={phone}
+                        label={'Phone'} 
+                        placeHolder="Digite seu telefone"
+                        onInputChange={this.handleInputChange}
+                        showMensageError={phone.errorMessage.length > 0}
+                        mask={true} />
 
                     <InputGroup 
                         inputProps={password}

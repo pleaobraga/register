@@ -1,6 +1,8 @@
 import React from 'react'
 import _ from 'lodash'
 import './style/index.scss'
+import MaskedInput from 'react-text-mask'
+
 
 const InputGroup = (props) => {
 
@@ -18,12 +20,26 @@ const InputGroup = (props) => {
                             ${props.showMensageError ? 'error' : '' }
                             ${props.success ? 'success' : '' }`} >
                 <label>{props.label}</label>
-                <input 
-                    type={props.inputType ? props.inputType : 'text' } 
-                    value={value} 
-                    placeholder={props.placeHolder}
-                    name={name}
-                    onChange={(event) => props.onInputChange(event)}/>
+                {
+                    props.mask ? (
+                        <MaskedInput 
+                            value={value} 
+                            placeholder={props.placeHolder}
+                            name={name}
+                            onChange={(event) => props.onInputChange(event)}
+                            mask={props.inputProps.mask}
+                        />
+                    ) : (
+                        <input 
+                            type={props.inputType ? props.inputType : 'text' } 
+                            value={value} 
+                            placeholder={props.placeHolder}
+                            name={name}
+                            onChange={(event) => props.onInputChange(event)}
+                        />
+                    )
+                }
+                
                 <span 
                     className={props.showMensageError ? '' : 'hidden'} >
                     {errorMessage}
