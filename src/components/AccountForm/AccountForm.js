@@ -159,7 +159,6 @@ class AccountForm extends Component {
         return regex.test(field.value)
     }
     
-
     checkEmailValidation(email) {
         const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         return regex.test(email)
@@ -210,22 +209,25 @@ class AccountForm extends Component {
                         label={'Nome completo'} 
                         placeHolder="Digite seu nome completo"
                         onInputChange={this.handleInputChange}
-                        showMensageError={ name.errorMessage.length > 0}/>
+                        showMensageError={ name.errorMessage.length > 0}
+                    />
 
                     <InputGroup 
                         inputProps={email}
                         label={'E-mail'} 
                         placeHolder="Digite seu email"
                         onInputChange={this.handleInputChange}
-                        showMensageError={email.errorMessage.length > 0}/>
+                        showMensageError={email.errorMessage.length > 0}    
+                    />
 
                     <InputGroup 
                         inputProps={phone}
-                        label={'Phone'} 
+                        label={'Telefone'} 
                         placeHolder="Digite seu telefone"
                         onInputChange={this.handleInputChange}
                         showMensageError={phone.errorMessage.length > 0}
-                        mask={true} />
+                        mask={true}     
+                    />
 
                     <InputGroup 
                         inputProps={password}
@@ -234,12 +236,14 @@ class AccountForm extends Component {
                         onInputChange={this.handleInputChange}
                         success={this.checkPassword(password) === 0}
                         inputType='password'
-                        showMensageError={ password.changed && this.checkPassword(password) > 0}/>
+                        showMensageError={ password.changed && this.checkPassword(password) > 0}
+                    />
                     
                     <PasswordStrength 
                         validation={password.validation}  
                         changed={password.changed}
-                        errorNumber={this.checkPassword(password)}/>
+                        errorNumber={this.checkPassword(password)}
+                    />
 
                     <InputGroup 
                         inputProps={confirmPassword}
@@ -247,7 +251,9 @@ class AccountForm extends Component {
                         placeHolder="Digite sua senha novamente"
                         onInputChange={this.handleInputChange}
                         inputType='password'
-                        showMensageError={confirmPassword.errorMessage.length > 0}/>
+                        showMensageError={confirmPassword.errorMessage.length > 0}
+                    />
+
                 </div>
                 <button>Cadastrar</button>
             </form>

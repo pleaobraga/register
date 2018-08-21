@@ -16,9 +16,12 @@ const InputGroup = (props) => {
 
         return (
             <div 
-                className={`input-group 
-                            ${props.showMensageError ? 'error' : '' }
-                            ${props.success ? 'success' : '' }`} >
+                className={
+                    `input-group 
+                        ${props.showMensageError ? 'error' : '' }
+                        ${props.success ? 'success' : '' }`
+                } 
+            >
                 <label>{props.label}</label>
                 {
                     props.mask ? (
