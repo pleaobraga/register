@@ -12,7 +12,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
-    title: 'Output Management',
+    title: 'Register',
     template: 'index.html'
     }),
     new webpack.HotModuleReplacementPlugin()
