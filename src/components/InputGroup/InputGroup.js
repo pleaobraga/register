@@ -14,6 +14,12 @@ const InputGroup = (props) => {
              name, 
             } = props.inputProps
 
+
+        const onBlurFunction = (value) => {
+            if(!errorMessage != "" && props.hasOwnProperty('onBlurFunction'))
+                props.onBlurFunction(value)
+        }
+
         return (
             <div 
                 className={
@@ -39,6 +45,7 @@ const InputGroup = (props) => {
                             placeholder={props.placeHolder}
                             name={name}
                             onChange={(event) => props.onInputChange(event)}
+                            onBlur={onBlurFunction(value)}
                         />
                     )
                 }

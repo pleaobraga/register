@@ -4,6 +4,9 @@ import PasswordStrength from '../PasswordStrength/PasswordStrength'
 import _ from 'lodash'
 import './style/index.scss'
 import * as validationFunctions from './ValidationsForm'
+import { connect } from 'react-redux'
+import { postRegisterData, checkEmailRegistered } from '../../actions/index'
+
 
 class AccountForm extends Component {
 
@@ -175,7 +178,8 @@ class AccountForm extends Component {
                         label={'E-mail'} 
                         placeHolder="Digite seu email"
                         onInputChange={this.handleInputChange}
-                        showMensageError={email.errorMessage.length > 0}    
+                        showMensageError={email.errorMessage.length > 0}  
+                        onBlurFunction={this.props.checkEmailRegistered.bind(this)}  
                     />
 
                     <InputGroup 
@@ -219,4 +223,11 @@ class AccountForm extends Component {
     }
 }
 
-export default AccountForm 
+const mapDispatchToProps = dispatch => ({
+    checkEmailRegistered: (email) => dispatch(checkEmailRegistered(email)),
+    postRegister: (register) => dispatch(postRegisterData(register)),
+})
+  
+
+
+export default connect(null, mapDispatchToProps)(AccountForm);

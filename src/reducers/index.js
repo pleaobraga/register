@@ -13,6 +13,11 @@ let initialState = {
 
 const register = (state = initialState, action) => {
 
+    let error = {
+        hasError: "",
+        message: ""
+    }
+
     switch(action.type) {
         case constant.CHECK_EMAIL:
             return {...state, fetchingEmail: true}
@@ -24,7 +29,7 @@ const register = (state = initialState, action) => {
 
         case constant.CHECK_EMAIL_ERROR:
 
-            let error = {
+            error = {
                 hasError: true,
                 message: action.error
             }
@@ -42,7 +47,7 @@ const register = (state = initialState, action) => {
         
         case constant.CHECK_EMAIL_ERROR:
 
-            let error = {
+            error = {
                 hasError: true,
                 message: action.error
             }

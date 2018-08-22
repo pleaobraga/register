@@ -1,4 +1,4 @@
-import thunk from 'redux-thunk'
+import axios from 'axios'
 import * as constant from './constants'
 
 
