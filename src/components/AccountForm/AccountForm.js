@@ -3,6 +3,7 @@ import InputGroup from '../InputGroup/InputGroup'
 import PasswordStrength from '../PasswordStrength/PasswordStrength'
 import _ from 'lodash'
 import './style/index.scss'
+import * as validationFunctions from './ValidationsForm'
 
 class AccountForm extends Component {
 
@@ -87,7 +88,7 @@ class AccountForm extends Component {
                 checkPasswordValidations,
                 checkHasOnlyLetters,
                 checkMinLength9
-            } = this
+            } = validationFunctions
 
         let { input, validationMessage } = this.state,
             { 
@@ -144,50 +145,6 @@ class AccountForm extends Component {
         }
     }
 
-    //input validation functions
-
-    checkEmptyInput(field) {
-        return field.value.length === 0
-    }
-
-    checkMinLength9(value) {
-        return value.replace( /\D/g, '').length === 9
-    }
-
-    checkHasOnlyLetters(field) {
-        const regex = /^[a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ\s]+$/g
-        return regex.test(field.value)
-    }
-    
-    checkEmailValidation(email) {
-        const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        return regex.test(email)
-    }
-
-    checkConfirmPassword(password, confirmPassword) {
-        return password === confirmPassword
-    }
-
-    checkPassword(password) {
-        let error = 0
-        _.forIn(password.validation, (value, key) => value === false ? error++ : null ) 
-        return error
-    }
-
-    checkPasswordValidations(password) {
-        const regexPattern = {
-            length: /.{6,}/g,
-            captalize: /[A-Z]{1,}/g,
-            number: /[0-9]{1,}/g
-        }
-
-        password.validation.length = regexPattern.length.test(password.value)
-        password.validation.captalize = regexPattern.captalize.test(password.value)
-        password.validation.number = regexPattern.number.test(password.value)
-
-        return password
-    }
-
     render() {
         let {
              name, 
@@ -196,7 +153,8 @@ class AccountForm extends Component {
              password,
              confirmPassword 
             } = this.state.input,
-            { submited } = this.state
+            { submited } = this.state,
+            {checkPassword} = validationFunctions
 
         return(
             <form className='account-form' onSubmit={this.handleSubmit} >
@@ -234,15 +192,15 @@ class AccountForm extends Component {
                         label={'Senha'} 
                         placeHolder="Digite sua senha"
                         onInputChange={this.handleInputChange}
-                        success={this.checkPassword(password) === 0}
+                        success={checkPassword(password) === 0}
                         inputType='password'
-                        showMensageError={ password.changed && this.checkPassword(password) > 0}
+                        showMensageError={ password.changed && checkPassword(password) > 0}
                     />
                     
                     <PasswordStrength 
                         validation={password.validation}  
                         changed={password.changed}
-                        errorNumber={this.checkPassword(password)}
+                        errorNumber={checkPassword(password)}
                     />
 
                     <InputGroup 
