@@ -1,0 +1,58 @@
+import * as constant from '../utils/constants'
+
+let initialState = {
+    fetchingEmail: false,
+    fetchingRegister: false,
+    emailRegistered: false,
+    saveRegister: false,
+    error: {
+        hasError: false,
+        message: ""
+    }
+}
+
+const register = (state = initialState, action) => {
+
+    switch(action.type) {
+        case constant.CHECK_EMAIL:
+            return {...state, fetchingEmail: true}
+
+
+        case constant.CHECK_EMAIL_SUCCESS:
+            return {...state, fetchingEmail: false, emailRegistered: action.resp}
+
+
+        case constant.CHECK_EMAIL_ERROR:
+
+            let error = {
+                hasError: true,
+                message: action.error
+            }
+
+            return {...state, fetchingEmail: false, emailRegistered: false, error}
+
+
+        case constant.SAVE_REGISTER:
+            return {...state, fetchingRegister: false}
+
+
+        case constant.SAVE_REGISTER_SUCCESS:
+            return {...state, fetchingRegister: false, saveRegister: true}
+
+        
+        case constant.CHECK_EMAIL_ERROR:
+
+            let error = {
+                hasError: true,
+                message: action.error
+            }
+
+            return {...state, fetchingRegister: false, saveRegister: false, error}
+
+
+        default: 
+            return state
+    }
+}
+
+export default register;

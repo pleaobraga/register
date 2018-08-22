@@ -4,7 +4,7 @@ import './style/index.scss'
 import CreateAccount from './page/CreateAccount/CreateAccount'
 import  { Provider } from 'react-redux' 
 import thunk from 'redux-thunk'
-import { createStore, applyMiddleware, compose } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import rootReducers from './reducers'
 
 
