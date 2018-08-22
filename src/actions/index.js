@@ -1,5 +1,5 @@
 import * as constant from '../utils/constants'
-
+import * as api from '../utils/apiRegister'
 
 //email 
 
@@ -19,16 +19,47 @@ const checkEmailError = (error) => ({
 
 //save data
 
-const postRegister= () => ({
+const postRegister = () => ({
     type: constant.SAVE_REGISTER,
 })
 
-const postDataSuccess = (resp) => ({
+const postRegisterSuccess = (resp) => ({
     type: constant.SAVE_REGISTER_SUCCESS,
     resp
 })
 
-const postDataError = (error) => ({
+const postRegisterError = (error) => ({
     type: constant.SAVE_REGISTER_ERROR,
     error
 })
+
+
+export const checkEmailRegistered = email => dispatch => {
+
+    dispatch(checkEmail())
+
+    return api.checkEmail(email)
+        .then(response => {
+            dispatch(checkEmailSuccess(response.data))
+            return response.data
+        })
+        .catch( error => {
+            console.log(error)
+            dispatch(checkEmailError(error))}
+        )
+}
+
+export const postRegister = register => dispatch => {
+
+    dispatch(postRegister())
+
+    return api.postRegister(register)
+        .then(response => {
+            dispatch(postRegisterSuccess(response.data))
+            return response.data
+        })
+        .catch( error => {
+            console.log(error)
+            dispatch(postRegisterError(error))}
+        )
+}
