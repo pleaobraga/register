@@ -5,7 +5,7 @@
     flex-direction: column;
     max-width: 375px;
     width: 100%;
-    margin-top: 24px;
+    margin-top: 24px; 
     position: relative;
 
     label {
@@ -16,13 +16,13 @@
 
     input {
         border: 1px solid $gray;
-        font-size: 16px;
-        padding: 15px 0 15px 16px;
+        font-size: $base-font-size;
+        padding: 10px 0 10px 16px;
         outline: none;
-        height: 44px;
+        height: 38px;
         box-sizing: border-box;
         color: $dark-gray;
-        font-family: 'soleil';
+        font-family: 'serif';
     }
 
     &.error {
