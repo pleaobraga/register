@@ -76,21 +76,46 @@ class AccountForm extends Component {
 
             this.setState({input})
         }
-
-        console.log(nextProps)
     }
 
     handleSubmit(event) {
         event.preventDefault();
     
-        let { submited, input: { password } } = this.state
+        if(this.isFormValid()) {
 
-        submited === false ? this.setState({submited: true}) : null
+            let {
+                name, 
+                email,
+                phone,
+                password,
+            } = this.state.input
 
-        if(!password.changed) {
-            password.changed = true
-            this.setState({password})
-        } 
+            let newRegister = {
+                name: name.value, 
+                email: email.value,
+                phone: phone.value,
+                password: password.value,
+            }
+
+            this.props.postRegister(newRegister)
+
+        }
+    }
+
+    isFormValid() {
+        let { input } = this.state,
+            formIsValid = true
+
+        _.forIn(input, (value) => { 
+            if(this.checkHasInputError(value) == false ) 
+                formIsValid = false 
+        });
+
+        return formIsValid
+    }
+
+    checkHasInputError(input) {
+        return input.errorMessage === ""
     }
 
     handleInputChange(event) {

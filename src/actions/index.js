@@ -16,23 +16,20 @@ const checkEmailError = (error) => ({
     error
 })
 
-const resetCheckedEmailVariable = () => ({
-    type: constant.RESET_EMAIL_CHECKED,
-})
 
 
 //save data
 const postRegister = () => ({
-    type: constant.SAVE_REGISTER,
+    type: constant.POST_REGISTER,
 })
 
 const postRegisterSuccess = (resp) => ({
-    type: constant.SAVE_REGISTER_SUCCESS,
+    type: constant.POST_REGISTER_SUCCESS,
     resp
 })
 
 const postRegisterError = (error) => ({
-    type: constant.SAVE_REGISTER_ERROR,
+    type: constant.POST_REGISTER_ERROR,
     error
 })
 
