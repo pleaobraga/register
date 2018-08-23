@@ -1,1 +1,0 @@
-hubot: node server.js
