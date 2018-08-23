@@ -43,10 +43,4 @@ const mapStateToProps = (state) => ({
     saveRegister: state.saveRegister,
 })
 
-// const mapDispatchToProps = dispatch => ({
-//     resetForm: () => dispatch(resetForm()),
-// })
-  
-
-
 export default connect(mapStateToProps)(SuccessModal);

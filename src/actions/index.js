@@ -33,9 +33,6 @@ const postRegisterError = (error) => ({
     error
 })
 
-const resetFormVariables = () => ({
-    type: constant.RESET_FORM,
-})
 
 
 export const checkEmailRegistered = email => dispatch => {
@@ -66,8 +63,4 @@ export const postRegisterData = register => dispatch => {
             console.log(error)
             dispatch(postRegisterError(error.response.data.error))}
         )
-}
-
-export const resetForm = () => dispatch => {
-    dispatch(resetFormVariables())
 }

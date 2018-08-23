@@ -11,7 +11,6 @@ export const CHECK_EMAIL_ERROR        = 'CHECK_EMAIL_ERROR'
 export const POST_REGISTER            = 'POST_REGISTER'
 export const POST_REGISTER_SUCCESS    = 'POST_REGISTER_SUCCESS'
 export const POST_REGISTER_ERROR      = 'POST_REGISTER_ERROR'
-export const RESET_FORM               = 'RESET_FORM'
 
 
 

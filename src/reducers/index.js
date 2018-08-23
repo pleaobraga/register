@@ -54,13 +54,6 @@ const register = (state = initialState, action) => {
 
             return {...state, fetchingRegister: false, saveRegister: false, error}
 
-        case constant.RESET_FORM: {
-
-            state = initialState
-
-            return {...state}
-        }
-
         default: 
             return state
     }
