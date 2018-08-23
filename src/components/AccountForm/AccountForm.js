@@ -67,13 +67,9 @@ class AccountForm extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-
         if(nextProps.emailRegistered == true) {
-
             let {input, validationMessage} = this.state
-
             input.email.errorMessage = validationMessage.emailRegistered
-
             this.setState({input})
         }
     }
@@ -107,9 +103,7 @@ class AccountForm extends Component {
             formIsValid = true
 
         _.forIn(input, (value) => { 
-
-            this.checkFeldHasError(value.name)
-
+            this.checkFieldHasError(value.name)
             if( this.checkHasInputError(value) == false ) 
                 formIsValid = false 
         });
@@ -121,7 +115,7 @@ class AccountForm extends Component {
         return input.errorMessage === ""
     }
 
-    checkFeldHasError(name) {
+    checkFieldHasError(name) {
 
         let { input } = this.state
 

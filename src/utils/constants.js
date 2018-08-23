@@ -1,6 +1,7 @@
 
-//url
-export const URL_BASE                 = 'http://localhost:3000'
+//url API
+export const URL_BASE_LOCAL           = 'http://localhost:3000'
+export const URL_BASE                 = 'https://register-server-data.herokuapp.com'
 
 //email validations 
 export const CHECK_EMAIL              = 'CHECK_EMAIL'
