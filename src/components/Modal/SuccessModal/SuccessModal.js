@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import WarningModal from '../WarningModal/WarningModal'
+import { 
+    resetForm 
+} from '../../../actions/index'
 
 class SuccessModal extends Component {
 
@@ -16,13 +19,18 @@ class SuccessModal extends Component {
             this.setState({ openModal: true })
     }
 
+    refreshPage() {
+        window.location.reload()
+    }
+
     render() {
         return(
             <WarningModal 
                 title="Sucesso"
                 textContent={"Seu cadastro foi efetuado com sucesso"}
                 openModal={this.state.openModal}
-                titleClass="green-title" 
+                titleClass="green-title"
+                onCloseModal={this.refreshPage}
             />
         )
     }
@@ -34,6 +42,10 @@ class SuccessModal extends Component {
 const mapStateToProps = (state) => ({
     saveRegister: state.saveRegister,
 })
+
+// const mapDispatchToProps = dispatch => ({
+//     resetForm: () => dispatch(resetForm()),
+// })
   
 
 

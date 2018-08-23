@@ -31,6 +31,9 @@ class WarningModal extends Component {
   }
 
   closeModal() {
+    if(this.props.hasOwnProperty('onCloseModal'))
+      this.props.onCloseModal()
+
     this.setState({modalIsOpen: false});
   }
 
