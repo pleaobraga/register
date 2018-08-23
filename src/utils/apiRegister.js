@@ -13,5 +13,5 @@ export const postRegister = (register) => {
 }
 
 export const checkEmail = (email) => {
-    return axios.post(`${constant.URL_BASE}/check-email`, email);
+    return axios.post(`${constant.URL_BASE}/check-email`, {email: email});
 }

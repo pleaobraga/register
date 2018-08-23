@@ -15,9 +15,9 @@ const InputGroup = (props) => {
             } = props.inputProps
 
 
-        const onBlurFunction = (value) => {
-            if(!errorMessage != "" && props.hasOwnProperty('onBlurFunction'))
-                props.onBlurFunction(value)
+        const onBlurHandler = (value) => {
+            if(errorMessage == "" && props.hasOwnProperty('onBlurHandler'))
+                props.onBlurHandler(value)
         }
 
         return (
@@ -45,7 +45,8 @@ const InputGroup = (props) => {
                             placeholder={props.placeHolder}
                             name={name}
                             onChange={(event) => props.onInputChange(event)}
-                            onBlur={onBlurFunction(value)}
+                            onBlur={() => onBlurHandler(value)}
+                            disabled={props.hasOwnProperty('disabled') ? props.disabled : false }
                         />
                     )
                 }

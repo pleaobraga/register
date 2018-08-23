@@ -16,6 +16,10 @@ const checkEmailError = (error) => ({
     error
 })
 
+const resetCheckedEmailVariable = () => ({
+    type: constant.RESET_EMAIL_CHECKED,
+})
+
 
 //save data
 const postRegister = () => ({
@@ -34,7 +38,7 @@ const postRegisterError = (error) => ({
 
 
 export const checkEmailRegistered = email => dispatch => {
-
+    
     dispatch(checkEmail())
 
     return api.checkEmail(email)

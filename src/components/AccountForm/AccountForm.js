@@ -5,7 +5,10 @@ import _ from 'lodash'
 import './style/index.scss'
 import * as validationFunctions from './ValidationsForm'
 import { connect } from 'react-redux'
-import { postRegisterData, checkEmailRegistered } from '../../actions/index'
+import { 
+    postRegisterData, 
+    checkEmailRegistered, 
+} from '../../actions/index'
 
 
 class AccountForm extends Component {
@@ -52,13 +55,29 @@ class AccountForm extends Component {
                 match: 'Senha nao corresponde a anterior',
                 email: 'Digite um email válido',
                 name: 'Digite um nome válido',
-                phone: 'O número de telefone precisa ter 9 digitos' 
+                phone: 'O número de telefone precisa ter 9 digitos',
+                emailRegistered: 'O email informado ja foi registrado' 
             },
-            submited: false
+            submited: false,
         }
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.onBlurHandler = this.onBlurHandler.bind(this);
+    }
+
+    componentWillReceiveProps(nextProps) {
+
+        if(nextProps.emailRegistered == true) {
+
+            let {input, validationMessage} = this.state
+
+            input.email.errorMessage = validationMessage.emailRegistered
+
+            this.setState({input})
+        }
+
+        console.log(nextProps)
     }
 
     handleSubmit(event) {
@@ -148,6 +167,12 @@ class AccountForm extends Component {
         }
     }
 
+    onBlurHandler(email) {
+        let {input} = this.state
+        input.email.errorMessage = ""
+        this.props.checkEmailRegistered(email)
+    }
+
     render() {
         let {
              name, 
@@ -156,8 +181,8 @@ class AccountForm extends Component {
              password,
              confirmPassword 
             } = this.state.input,
-            { submited } = this.state,
-            {checkPassword} = validationFunctions
+            {checkPassword} = validationFunctions,
+            {fetchingEmail} = this.props
 
         return(
             <form className='account-form' onSubmit={this.handleSubmit} >
@@ -179,7 +204,8 @@ class AccountForm extends Component {
                         placeHolder="Digite seu email"
                         onInputChange={this.handleInputChange}
                         showMensageError={email.errorMessage.length > 0}  
-                        onBlurFunction={this.props.checkEmailRegistered.bind(this)}  
+                        onBlurHandler={this.onBlurHandler}  
+                        disabled={fetchingEmail}
                     />
 
                     <InputGroup 
@@ -223,11 +249,19 @@ class AccountForm extends Component {
     }
 }
 
+const mapStateToProps = (state) => ({
+    fetchingEmail: state.fetchingEmail,
+    fetchingRegister: state.fetchingRegister,
+    emailRegistered: state.emailRegistered,
+    saveRegister: state.saveRegister,
+    error: state.error
+})
+
 const mapDispatchToProps = dispatch => ({
     checkEmailRegistered: (email) => dispatch(checkEmailRegistered(email)),
-    postRegister: (register) => dispatch(postRegisterData(register)),
+    postRegister: (register) => dispatch(postRegisterData(register))
 })
   
 
 
-export default connect(null, mapDispatchToProps)(AccountForm);
+export default connect(mapStateToProps, mapDispatchToProps)(AccountForm);
