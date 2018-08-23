@@ -20,7 +20,7 @@ const register = (state = initialState, action) => {
 
     switch(action.type) {
         case constant.CHECK_EMAIL:
-            return {...state, fetchingEmail: true}
+            return {...state, fetchingEmail: true, emailRegistered:false}
 
 
         case constant.CHECK_EMAIL_SUCCESS:

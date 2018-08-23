@@ -107,7 +107,10 @@ class AccountForm extends Component {
             formIsValid = true
 
         _.forIn(input, (value) => { 
-            if(this.checkHasInputError(value) == false ) 
+
+            this.checkFeldHasError(value.name)
+
+            if( this.checkHasInputError(value) == false ) 
                 formIsValid = false 
         });
 
@@ -116,6 +119,16 @@ class AccountForm extends Component {
 
     checkHasInputError(input) {
         return input.errorMessage === ""
+    }
+
+    checkFeldHasError(name) {
+
+        let { input } = this.state
+
+        if(input[name].value.length === 0 && input[name].errorMessage.length === 0 ) {
+            input = this.updateInputObject(input[name].value, name)    
+            this.setState({input});
+        }
     }
 
     handleInputChange(event) {
