@@ -60,6 +60,6 @@ export const postRegisterData = register => dispatch => {
         })
         .catch( error => {
             console.log(error)
-            dispatch(postRegisterError(error))}
+            dispatch(postRegisterError(error.response.data.error))}
         )
 }

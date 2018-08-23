@@ -37,15 +37,15 @@ const register = (state = initialState, action) => {
             return {...state, fetchingEmail: false, emailRegistered: false, error}
 
 
-        case constant.SAVE_REGISTER:
+        case constant.POST_REGISTER:
             return {...state, fetchingRegister: false}
 
 
-        case constant.SAVE_REGISTER_SUCCESS:
+        case constant.POST_REGISTER_SUCCESS:
             return {...state, fetchingRegister: false, saveRegister: true}
 
         
-        case constant.SAVE_REGISTER_ERROR:
+        case constant.POST_REGISTER_ERROR:
 
             error = {
                 hasError: true,
