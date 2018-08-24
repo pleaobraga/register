@@ -2,7 +2,7 @@ import axios from 'axios'
 import * as constant from './constants'
 
 
-//Registers request
+//--------Registers request--------------
 export const getRegisters = () => {
     return axios.get(`${constant.URL_BASE}/`);
 }

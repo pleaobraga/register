@@ -2,6 +2,12 @@ import React from 'react'
 import _ from 'lodash'
 import './style/index.scss'
 
+/**
+ * Stateless component PasswordStrength
+ *
+ * @param {object} props
+ * @returns
+ */
 const PasswordStrength = (props) => {
 
     const barColor = (error) => {

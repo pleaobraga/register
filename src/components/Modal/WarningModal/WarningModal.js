@@ -14,6 +14,12 @@ const customStyles = {
   }
 };
 
+/**
+ *
+ *
+ * @class WarningModal
+ * @extends {Component}
+ */
 class WarningModal extends Component {
   constructor() {
     super();

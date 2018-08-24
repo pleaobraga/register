@@ -4,6 +4,12 @@ import './style/index.scss'
 import MaskedInput from 'react-text-mask'
 
 
+/**
+ * Statless Component Input Group
+ *
+ * @param {object} props
+ * @returns
+ */
 const InputGroup = (props) => {
 
     if(!_.isEmpty(props)) {

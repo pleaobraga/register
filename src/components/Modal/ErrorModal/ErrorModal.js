@@ -2,6 +2,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import WarningModal from '../WarningModal/WarningModal'
 
+/**
+ *
+ *
+ * @class ErrorModal
+ * @extends {Component}
+ */
 class ErrorModal extends Component {
 
     constructor() {

@@ -5,6 +5,11 @@ import SuccessModal from '../../components/Modal/SuccessModal/SuccessModal'
 
 import './style/index.scss'
 
+/**
+ * Stateless componenent Create Account
+ *
+ * @returns
+ */
 const CreateAccount = () => {
     return (
       <div className='create-account' >

@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import WarningModal from '../WarningModal/WarningModal'
-import { 
-    resetForm 
-} from '../../../actions/index'
 
+/**
+ *
+ *
+ * @class SuccessModal
+ * @extends {Component}
+ */
 class SuccessModal extends Component {
 
     constructor() {
