@@ -23,6 +23,10 @@
         box-sizing: border-box;
         color: $dark-gray;
         font-family: 'serif';
+
+        &.disabled {
+            background-color: $dark-light-gray !important;
+        }
     }
 
     &.error {

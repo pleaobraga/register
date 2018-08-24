@@ -53,6 +53,7 @@ const InputGroup = (props) => {
                             onChange={(event) => props.onInputChange(event)}
                             onBlur={() => onBlurHandler(value)}
                             disabled={props.hasOwnProperty('disabled') ? props.disabled : false }
+                            className={props.disabled === true ? "disabled" : ""}
                         />
                     )
                 }
