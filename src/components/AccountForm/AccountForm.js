@@ -11,6 +11,12 @@ import {
 } from '../../actions/index'
 
 
+/**
+ * 
+ *
+ * @class AccountForm
+ * @extends {Component}
+ */
 class AccountForm extends Component {
 
     constructor() {
@@ -67,6 +73,8 @@ class AccountForm extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        
+        // throw error case email was registered
         if(nextProps.emailRegistered == true) {
             let {input, validationMessage} = this.state
             input.email.errorMessage = validationMessage.emailRegistered
@@ -98,6 +106,12 @@ class AccountForm extends Component {
         }
     }
 
+    /**
+     *function check if form is valid
+     *
+     * @returns boolean
+     * @memberof AccountForm
+     */
     isFormValid() {
         let { input } = this.state,
             formIsValid = true
@@ -111,14 +125,32 @@ class AccountForm extends Component {
         return formIsValid
     }
 
+    
+    /**
+     *  check if input has error
+     *
+     * @param {*} input
+     * @returns boolena
+     * @memberof AccountForm
+     */
     checkHasInputError(input) {
         return input.errorMessage === ""
     }
 
+
+
+    /**
+     * function check if some 
+     * form field has error
+     *
+     * @param {string} name
+     * @memberof AccountForm
+     */
     checkFieldHasError(name) {
 
         let { input } = this.state
 
+        //case the form was submitted without data its throw a field error
         if(input[name].value.length === 0 && input[name].errorMessage.length === 0 ) {
             input = this.updateInputObject(input[name].value, name)    
             this.setState({input});
@@ -134,6 +166,15 @@ class AccountForm extends Component {
     }
     
 
+    /**
+     * function update field 
+     * errorMessage 
+     *
+     * @param {String} value
+     * @param {String} field
+     * @returns
+     * @memberof AccountForm
+     */
     updateInputObject(value, field) {
         const {
                 checkEmptyInput,
@@ -199,6 +240,14 @@ class AccountForm extends Component {
         }
     }
 
+    /**
+     * function pass throught
+     * childrem to check the email
+     *
+     *
+     * @param {string} email
+     * @memberof AccountForm
+     */
     onBlurHandler(email) {
         let {input} = this.state
         input.email.errorMessage = ""

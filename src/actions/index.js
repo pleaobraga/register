@@ -1,7 +1,8 @@
 import * as constant from '../utils/constants'
 import * as api from '../utils/apiRegister'
 
-//email 
+//------email plain objects ---------------
+
 const checkEmail = () => ({
     type: constant.CHECK_EMAIL,
 })
@@ -18,7 +19,8 @@ const checkEmailError = (error) => ({
 
 
 
-//save data
+//----------- save data plain objects ----------------
+
 const postRegister = () => ({
     type: constant.POST_REGISTER,
 })
@@ -35,6 +37,11 @@ const postRegisterError = (error) => ({
 
 
 
+ /**
+ * function check if email is registered
+ *
+ * @param {object} email
+ */
 export const checkEmailRegistered = email => dispatch => {
     
     dispatch(checkEmail())
@@ -50,6 +57,12 @@ export const checkEmailRegistered = email => dispatch => {
         )
 }
 
+
+ /**
+ * function save new register in database 
+ *
+ * @param {object} register
+ */
 export const postRegisterData = register => dispatch => {
 
     dispatch(postRegister())
